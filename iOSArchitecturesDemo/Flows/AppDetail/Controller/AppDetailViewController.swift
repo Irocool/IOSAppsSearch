@@ -10,14 +10,29 @@ import UIKit
 
 final class AppDetailViewController: UIViewController {
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        scrollView.addSubview(contentView)
+
+        return scrollView
+    }()
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     public var app: ITunesApp
     private lazy var headerViewController = AppDetailHeaderViewController(app: app)
-    
+    private lazy var descriptionViewController = AppDetailDescriptionViewController(app: app)
     private let imageDownloader = ImageDownloader()
     
-    private var appDetailView: AppDetailView {
-        return self.view as! AppDetailView
-    }
+//    private var appDetailView: AppDetailView {
+//        return self.view as! AppDetailView
+//    }
     
     init(app: ITunesApp) {
         self.app = app
@@ -42,6 +57,7 @@ final class AppDetailViewController: UIViewController {
         
 //        self.configureNavigationController()
 //        self.downloadImage()
+        
     }
     
     
@@ -52,8 +68,24 @@ final class AppDetailViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationItem.largeTitleDisplayMode = .never
         
+     
+        view.addSubview(scrollView)
+        
+        NSLayoutConstraint.activate([
+            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+        ])
+        
         addHeaderViewController()
-        addDescriptionViewController() //ДЗ
+        addDescriptionViewController()
+        
     }
     
     private func addHeaderViewController() {
@@ -75,19 +107,17 @@ final class AppDetailViewController: UIViewController {
     private func addDescriptionViewController() {
         //ДЗ: Добавить другие модели
         
-        let descriptionViewController = UIViewController()
-        
-        self.addChild(descriptionViewController)
-        self.view.addSubview(descriptionViewController.view)
+        contentView.addSubview(descriptionViewController.view)
+        addChild(descriptionViewController)
         
         descriptionViewController.didMove(toParent: self)
+        
         descriptionViewController.view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-//            descriptionViewController.view.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            descriptionViewController.view.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            descriptionViewController.view.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            descriptionViewController.view.rightAnchor.constraint(equalTo: self.view.rightAnchor)
+            descriptionViewController.view.topAnchor.constraint(equalTo: headerViewController.view.bottomAnchor),
+            descriptionViewController.view.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            descriptionViewController.view.rightAnchor.constraint(equalTo: contentView.rightAnchor),
         ])
     }
     
