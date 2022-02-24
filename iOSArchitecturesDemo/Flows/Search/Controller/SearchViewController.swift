@@ -51,6 +51,9 @@ final class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Music", style: .plain, target: self, action: #selector(toMusicTapped))
+        navigationItem.rightBarButtonItem?.tintColor = .white
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.searchView.searchBar.delegate = self
         self.searchView.tableView.register(AppCell.self, forCellReuseIdentifier: Constants.reuseIdentifier)
         self.searchView.tableView.delegate = self
@@ -63,40 +66,14 @@ final class SearchViewController: UIViewController {
     }
     
     // MARK: - Private
-    
-    
-    
-    
-//    private func requestApps(with query: String) {
-//        self.throbber(show: true)
-//        self.searchResults = []
-//        self.searchView.tableView.reloadData()
-//
-//        self.searchService.getApps(forQuery: query) { [weak self] result in
-//            guard let self = self else { return }
-//            self.throbber(show: false)
-//            result
-//                .withValue { apps in
-//                    guard !apps.isEmpty else {
-//                        self.searchResults = []
-//                        self.showNoResults()
-//                        return
-//                    }
-//                    self.hideNoResults()
-//                    self.searchResults = apps
-//
-//                    self.searchView.tableView.isHidden = false
-//                    self.searchView.tableView.reloadData()
-//
-//                    self.searchView.searchBar.resignFirstResponder()
-//                }
-//                .withError {
-//                    self.showError(error: $0)
-//                }
-//        }
-//    }
-}
 
+    @objc private func toMusicTapped() {
+        AppStartManager.shared.openMusicSearch()
+    }
+    
+    
+}
+    
 //MARK: - UITableViewDataSource
 extension SearchViewController: UITableViewDataSource {
     
