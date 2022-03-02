@@ -55,16 +55,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4CC21AC6-38AA-46BA-BDCE-6252DE0BA4C6"
-            shouldBeEnabled = "No"
+            uuid = "8EFA92D0-5C37-4757-AA9F-CD800E249BDD"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iOSArchitecturesDemo/Flows/SearchMusic/Controller/SearchMusicViewController.swift"
+            filePath = "iOSArchitecturesDemo/Flows/SongPlayer/View/SongPlayerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "toAppsTapped()"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

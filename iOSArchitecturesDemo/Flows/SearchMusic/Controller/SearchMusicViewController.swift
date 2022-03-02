@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchMusicViewController: UIViewController {
-
+    
     // MARK: - Private Properties
     
     private var searchMusicView: SearchMusicView {
@@ -62,7 +62,7 @@ class SearchMusicViewController: UIViewController {
     // MARK: - Private
     
     @objc private func toAppsTapped() {
-        AppStartManager.shared.start()
+        presenter.viewDidMoveToAppSearch()
     }
     
     func throbber(show: Bool) {
